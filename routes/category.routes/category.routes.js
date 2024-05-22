@@ -3,7 +3,7 @@ const router = express.Router();
 const Category = require("../../models/Category.model.js");
 const upload = require("../../config/multer.js");
 
-router.get("/", async (res) => {
+router.get("/", async (req, res) => {
   try {
     const categories = await Category.find();
     res.status(200).json(categories);
