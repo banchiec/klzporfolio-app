@@ -13,7 +13,7 @@ const CategorySchema = new Schema(
       type: String,
     },
     available: {
-      type: boolean,
+      type: Boolean,
       default: true,
     },
   },
