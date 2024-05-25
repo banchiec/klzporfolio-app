@@ -1,32 +1,52 @@
 const express = require("express");
 const router = express.Router();
-const Category = require("../../models/Category.model.js");
-const upload = require("../../config/multer.js");
+const Product = require("../product.routes/product.routes.js");
 
 router.get("/", async (req, res) => {
   try {
-    const categories = await Category.find();
-    res.status(200).json(categories);
+    const products = await Product.find();
+    if (products) {
+      res.status(200).json(products);
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const { name, description, available, productType } = req.body;
-    const imagePath = req.file ? req.file.path : null;
-
-    const category = new Category({
+    const {
       name,
       description,
-      image: imagePath,
-      available: available,
-      productType: productType,
+      deliveryDays,
+      colors,
+      category,
+      reviews,
+      deliveryFormat,
+      price,
+      sold,
+      images,
+      deliveryOptions,
+      productType,
+    } = req.body;
+
+    const product = new Product({
+      name,
+      description,
+      deliveryDays,
+      colors,
+      category,
+      reviews,
+      deliveryFormat,
+      price,
+      sold,
+      images,
+      deliveryOptions,
+      productType,
     });
 
-    await category.save();
-    res.status(200).json(category);
+    await product.save();
+    res.status(200).json(product);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

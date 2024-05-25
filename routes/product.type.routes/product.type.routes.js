@@ -13,20 +13,19 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { name } = req.body;
+    let { name } = req.body;
 
-    const existsProductType = ProductType.findOne(name);
+    const existsProductType = await ProductType.findOne({ name: name });
+    console.log(existsProductType);
     if (!existsProductType) {
-      const productType = new ProductType({
-        name,
-      });
+      const productType = new ProductType({ name: name });
       await productType.save();
       res.status(200).json(productType);
     } else {
       throw new Error("Product type exists in DB");
     }
   } catch (error) {
-    res.status(500).json(new Error({ error: error.message }));
+    res.status(500).json({ error: error.message });
   }
 });
 
