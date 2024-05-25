@@ -16,7 +16,6 @@ router.post("/", async (req, res) => {
     let { name } = req.body;
 
     const existsProductType = await ProductType.findOne({ name: name });
-    console.log(existsProductType);
     if (!existsProductType) {
       const productType = new ProductType({ name: name });
       await productType.save();

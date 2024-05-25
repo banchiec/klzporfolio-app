@@ -6,10 +6,13 @@ require('./db')
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 var express = require('express')
+
 var app = express()
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
+
 require('./config')(app)
 // 👇 Start handling routes here
+
 var routes = require('./routes')
 app.use('/api', routes)
 //var authRoutes = require('./routes/auth.routes')

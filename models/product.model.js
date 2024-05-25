@@ -10,19 +10,17 @@ const productSchema = new Schema(
     description: {
       type: String,
     },
-    deliveryDays: [
-      {
-        days: {
-          type: Number,
-          enum: [4, 7, 10],
-          required: true,
-        },
-        price: {
-          type: Number,
-          required: true,
-        },
+    deliveryDays: {
+      days: {
+        type: Number,
+        enum: [4, 7, 10],
+        required: true,
       },
-    ],
+      price: {
+        type: Number,
+        required: true,
+      },
+    },
     colors: [
       {
         type: String,
@@ -76,11 +74,11 @@ const productSchema = new Schema(
         },
         size: {
           width: {
-            type: number,
+            type: Number,
             default: 210,
           },
           height: {
-            type: number,
+            type: Number,
             default: 210,
           },
         },
@@ -88,10 +86,8 @@ const productSchema = new Schema(
     ],
     deliveryOptions: [
       {
-        type: {
-          type: String,
-          enum: ["printed", "digital", "framed"],
-        },
+        type: String,
+        enum: ["printed", "digital", "framed"],
       },
     ],
     productType: {
