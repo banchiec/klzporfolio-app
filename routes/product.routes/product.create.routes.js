@@ -1,17 +1,5 @@
-const express = require("express");
-const router = express.Router();
-const Product = require("../product.routes/product.routes.js");
-
-router.get("/", async (req, res) => {
-  try {
-    const products = await Product.find();
-    if (products) {
-      res.status(200).json(products);
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+const express = require("express")
+const router = express.Router()
 
 router.post("/", async (req, res) => {
   try {
@@ -45,6 +33,10 @@ router.post("/", async (req, res) => {
       productType,
     });
 
+
+
+
+
     await product.save();
     res.status(200).json(product);
   } catch (error) {
@@ -52,4 +44,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports(router)
