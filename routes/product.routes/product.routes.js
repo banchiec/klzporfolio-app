@@ -18,8 +18,8 @@ router.post("/", upload.single("image"), async (req, res) => {
     const imagePath = req.file ? req.file.path : null;
 
     const category = new Category({
-      name: name,
-      description: description,
+      name,
+      description,
       image: imagePath,
       available: available,
       productType: productType,

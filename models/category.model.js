@@ -16,6 +16,13 @@ const CategorySchema = new Schema(
       type: Boolean,
       default: true,
     },
+    productType: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "ProductType",
+        required: true,
+      },
+    ],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

@@ -9,11 +9,11 @@ const productSchema = new Schema(
     description: {
       type: String,
     },
-    deliverydays: [
+    deliveryDays: [
       {
         days: {
           type: Number,
-          enum: [4, 7, 10], // Enum validation
+          enum: [4, 7, 10],
           required: true,
         },
         price: {
@@ -28,16 +28,16 @@ const productSchema = new Schema(
         required: true,
       },
     ],
-    Category: {
-      type: Schema.Types.ObjectId, // Use ObjectId for referencing
-      ref: "Category", // Name of the model to reference
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
       required: true,
     },
     reviews: [
       {
         days: {
           type: Number,
-          enum: [4, 7, 10], // Enum validation
+          enum: [4, 7, 10],
           required: true,
         },
         price: {
@@ -50,7 +50,7 @@ const productSchema = new Schema(
       {
         format: {
           type: String,
-          enum: ["png", "jpg", "jpeg"], // Enum validation
+          enum: ["png", "jpg", "jpeg"],
           required: true,
         },
         price: {
@@ -93,9 +93,13 @@ const productSchema = new Schema(
         },
       },
     ],
+    productType: {
+      type: Schema.Types.ObjectId,
+      ref: "ProductType",
+      required: true,
+    },
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
   }
 );
