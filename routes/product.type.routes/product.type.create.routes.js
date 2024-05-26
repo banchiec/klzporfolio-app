@@ -1,23 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const ProductType = require("../../models/product.type.model");
+const upload = require("../../config/multer.js")
 
-router.get("/", async (req, res) => {
+router.post("/", upload.single("image"), async (req, res) => {
   try {
-    const productType = await ProductType.find();
-    res.status(200).json(productType);
-  } catch (error) {
-    res.status(500).json(new Error({ error: error.message }()));
-  }
-});
-
-router.post("/", async (req, res) => {
-  try {
-    let { name } = req.body;
+    const { name, description } = req.body;
+    const imagePath = req.file ? req.file.path : null;
 
     const existsProductType = await ProductType.findOne({ name: name });
     if (!existsProductType) {
-      const productType = new ProductType({ name: name });
+      const productType = new ProductType({ name, description, image: imagePath });
       await productType.save();
       res.status(200).json(productType);
     } else {

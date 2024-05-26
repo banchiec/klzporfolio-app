@@ -2,27 +2,6 @@ const express = require("express")
 const router = express.Router()
 const Product = require("../../models/product.model")
 
-
-const deliveryFormat = [
-  {
-    format: "png",
-    price: 12.3,
-  },
-  {
-    format: "png",
-    price: 12,
-  },
-  {
-    format: "png",
-    price: 12,
-  },
-  {
-    format: "png",
-    price: 12,
-  }
-]
-
-
 router.post("/", async (req, res) => {
   const {
     name,
@@ -38,6 +17,7 @@ router.post("/", async (req, res) => {
     deliveryOptions,
     productType,
   } = req.body;
+  console.log(deliveryDays)
 
   try {
     const existsName = await Product.findOne({ name: name })
@@ -61,7 +41,6 @@ router.post("/", async (req, res) => {
     } else {
       res.status(400).json({ error: "failed, name exist" })
     }
-
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
