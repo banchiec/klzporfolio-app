@@ -3,7 +3,7 @@ const router = express.Router();
 const Product = require("../../models/product.model");
 const upload = require("../../config/multer");
 
-router.post("/", upload.array("images", 12), async (req, res) => {
+router.post("/", upload.array("images", 10), async (req, res) => {
   console.log(req.files.length, "file length");
 
   const {
@@ -31,6 +31,9 @@ router.post("/", upload.array("images", 12), async (req, res) => {
     }));
   }
 
+  console.log(req.files, "uploaded files");
+  console.log(req.body, "form data");
+
   try {
     const existsName = await Product.findOne({ name: name });
     if (existsName === null) {
@@ -48,6 +51,7 @@ router.post("/", upload.array("images", 12), async (req, res) => {
         deliveryOptions,
         productType,
       });
+      console.log(product, "product data");
       await product.save();
       res.status(200).json(product);
     } else {

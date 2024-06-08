@@ -64,16 +64,16 @@ const productSchema = new Schema(
         url: {
           type: String,
         },
-        size: {
-          width: {
-            type: Number,
-            default: 210,
-          },
-          height: {
-            type: Number,
-            default: 210,
-          },
-        },
+        // size: {
+        //   width: {
+        //     type: Number,
+        //     default: 210,
+        //   },
+        //   height: {
+        //     type: Number,
+        //     default: 210,
+        //   },
+        // },
       },
     ],
     deliveryOptions: [
