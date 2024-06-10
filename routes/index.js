@@ -5,11 +5,12 @@ const categoryRouter = require('./category.routes/category.routes')
 const productTypeRouter = require('./product.type.routes')
 const productRouter = require('./product.routes')
 const uploadsRoutes = require('./uploads.routes')
+const validateAuth = require("../middleware/validateAuth");
 
 router.use('/auth', authRouter)
-router.use('/categories', categoryRouter)
-router.use('/product-type', productTypeRouter)
-router.use('/products', productRouter)
-router.use('/uploads', uploadsRoutes)
+router.use('/categories', validateAuth, categoryRouter)
+router.use('/product-type', validateAuth, productTypeRouter)
+router.use('/products',  validateAuth, productRouter)
+router.use('/uploads',  validateAuth, uploadsRoutes)
 
 module.exports = router
