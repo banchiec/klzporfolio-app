@@ -8,7 +8,7 @@ const validateAuth = require("../middleware/validateAuth");
 
 router.use("/auth", authRouter);
 router.use("/category", validateAuth, categoryRouter);
-router.use("/product-type", productTypeRouter);
-router.use("/product", productRouter);
+router.use("/product-type", validateAuth, productTypeRouter);
+router.use("/product", validateAuth, productRouter);
 
 module.exports = router;
