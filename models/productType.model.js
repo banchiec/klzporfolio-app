@@ -19,6 +19,6 @@ const productTypeSchema = new Schema(
 	}
 )
 
-const productType = model('productType', productTypeSchema)
+const ProductType = model('ProductType', productTypeSchema)
 
-module.exports = productType
+module.exports = ProductType
