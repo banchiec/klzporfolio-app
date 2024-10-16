@@ -4,100 +4,45 @@ const productSchema = new Schema(
 	{
 		name: {
 			type: String,
-			required: true,
+		},
+		price: {
+			type: Number,
+		},
+		beloning: {
+			idCategory: {
+				type: Schema.Types.ObjectId,
+				ref: 'Category',
+			},
+			subCategory: {
+				type: String,
+			},
 		},
 		description: {
 			type: String,
 		},
-		deliverydays: [
+		size: [
 			{
-				days: {
-					type: Number,
-					enum: [4, 7, 10], // Enum validation
-					required: true,
+				type: String,
+				default: ['XL, XXL, L, M'],
+			},
+		],
+		photos: [
+			{
+				url: {
+					type: String,
 				},
-				price: {
-					type: Number,
-					required: true,
+				color: {
+					type: String,
 				},
 			},
 		],
 		colors: [
 			{
 				type: String,
-				required: true,
-			},
-		],
-		Category: {
-			type: Schema.Types.ObjectId, // Use ObjectId for referencing
-			ref: 'Category', // Name of the model to reference
-			required: true,
-		},
-		reviews: [
-			{
-				days: {
-					type: Number,
-					enum: [4, 7, 10], // Enum validation
-					required: true,
-				},
-				price: {
-					type: Number,
-					required: true,
-				},
-			},
-		],
-		deliveryFormat: [
-			{
-				format: {
-					type: String,
-					enum: ['png', 'jpg', 'jpeg'], // Enum validation
-					required: true,
-				},
-				price: {
-					type: Number,
-					required: true,
-				},
-			},
-		],
-		price: {
-			type: Number,
-			required: true,
-		},
-		sold: {
-			type: Number,
-			required: true,
-		},
-		images: [
-			{
-				url: {
-					type: String,
-					required: true,
-				},
-				size: {
-					width: {
-						type: number,
-						default: 210,
-					},
-					height: {
-						type: number,
-						default: 210,
-					},
-				},
-			},
-		],
-		deliveryOptions: [
-			{
-				type: {
-					type: String,
-					enum: ['printed', 'digital', 'framed'],
-				},
 			},
 		],
 	},
-	{
-		// this second object adds extra properties: `createdAt` and `updatedAt`
-		timestamps: true,
-	}
+	{ timestamps: true }
 )
 
 const Product = model('Product', productSchema)
