@@ -12,4 +12,9 @@ router.get('/product-type/:image', async (req, res) => {
 	res.sendFile(path.join(__dirname, `../../uploads/product-type/${image}`))
 })
 
+router.get('/products/:image', async (req, res) => {
+	const { image } = req.params
+	console.log(image)
+	res.sendFile(path.join(__dirname, `../../uploads/products/${image}`))
+})
 module.exports = router

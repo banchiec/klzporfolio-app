@@ -4,7 +4,7 @@ const Product = require('../../models/product.model')
 
 router.get('/', async (req, res, next) => {
 	try {
-		const products = await Product.find()
+		const products = await Product.find().populate('productType')
 		if (products) {
 			res.status(200).json(products)
 		}
